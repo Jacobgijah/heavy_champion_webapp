@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>Heavy Champion |
+      {% block title %}
+      
+      {% endblock title %}
+    </title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json' %}">
+    <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    {% comment %} <link rel="preconnect" href="https://fonts.gstatic.com"> {% endcomment %}
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="{% static 'vendors/prism/prism.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/user.css' %}" rel="stylesheet" />
+
+  </head>
+
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Navigation -->
+    <!-- ===============================================--> 
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" data-navbar-on-scroll="data-navbar-on-scroll">
+      <div class="container">
+        <a class="navbar-brand" href="{% url "index" %}">
+          {% comment %} <span class="text-light display-6">THC</span> {% endcomment %}
+          <img src="{% static 'assets/img/Logo_thc.png' %}" alt="heavy champion logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa-solid fa-bars text-white fs-3"></i></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "index" %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "about" %}">About</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Services</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "products" %}">Products</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "contact" %}">Contact</a></li>
+            {% comment %} <li class="nav-item mt-2 mt-lg-0"><a class="nav-link btn btn-light text-black w-md-25 w-50 w-lg-100" aria-current="page" href="#">Log In</a></li> {% endcomment %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+
+        {% block main %}
+
+        {% endblock main %}
+
+      </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->  
+    <!-- ============================================-->
+
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+      <section>
+
+        <div class="container bg-dark overflow-hidden rounded-1">
+          <div class="bg-holder" style="background-image:url({% static "assets/img/promo/promo-bg.png" %});">
+          </div>
+          <!--/.bg-holder-->
+  
+          <div class="px-5 py-7 position-relative">
+            <h1 class="text-center w-lg-75 mx-auto fs-lg-6 fs-md-4 fs-3 text-white">We remain steadfast in our dedication to Service excellence</h1>
+            <div class="row justify-content-center mt-5">
+              <div class="col-auto w-100 w-lg-50">
+                <input class="form-control mb-2 border-light fs-1" type="email" placeholder="Your email address" />
+              </div>
+              <div class="col-auto mt-2 mt-lg-0">
+                <button class="btn btn-success text-dark fs-1">Start now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+  
+      </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->    
+
+    <!-- <footer> begin ============================-->
+    <section class="pt-0">
+
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-6 col-sm-12">
+            <a href="{% url "index" %}">
+            {% comment %} <p class="mt-5 mb-4 display-6">THC</p> {% endcomment %}
+              <img class="img-fluid mt-5 mb-4" src="{% static 'assets/img/black-logo-thc.jpg' %}" alt="" />
+            </a>
+            <p class="w-lg-75 text-gray">Our products comply with national regulations & are certified by relevant health authorities, ensuring the reliability and safety of our offering</p>
+          </div>
+          <div class="col-lg-2 col-sm-4">
+            <h3 class="fw-bold fs-1 mt-5 mb-4">Landings</h3>
+            <ul class="list-unstyled">
+              <li class="mb-3"><a href="{% url "index" %}">Home</a></li>
+              <li class="mb-3"><a href="{% url "about" %}">About</a></li>
+              <li class="mb-3"><a href="{% url "products" %}">Products</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-sm-4">
+            <h3 class="fw-bold fs-1 mt-5 mb-4">Company</h3>
+            <ul class="list-unstyled">
+              <li class="my-3"><a href="#">Home</a></li>
+              {% comment %} <li class="my-3"><a href="#">Careers</a><span class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2">Hiring!</span></li> {% endcomment %}
+              <li class="my-3"><a href="#">Services</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-sm-4">
+            <h3 class="fw-bold fs-1 mt-5 mb-4">Resources</h3>
+            <ul class="list-unstyled">
+              <li class="mb-3"><a href="{% url "index" %}">Home</a></li>
+              <li class="mb-3"><a href="{% url "about" %}">About</a></li>
+              <li class="mb-3"><a href="{% url "products" %}">Products</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-gray">All rights reserved.</p>
+      </div>
+      <!-- end of .container-->
+
+    </section>
+    <!-- <footer> close ============================-->
+    <!-- ============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="{% static 'vendors/popper/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/anchorjs/anchor.min.js' %}"></script>
+    <script src="{% static 'vendors/is/is.min.js' %}"></script>
+    <script src="{% static 'vendors/fontawesome/all.min.js' %}"></script>
+    <script src="{% static 'vendors/lodash/lodash.min.js' %}"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="{% static 'vendors/prism/prism.js' %}"></script>
+    <script src="{% static 'vendors/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+
+  </body>
+
+</html>

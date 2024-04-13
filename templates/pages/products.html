@@ -16,22 +16,31 @@ Products
     <p class="text-center fs-1">Our Products</p>
     <h2 class="mx-auto text-center fs-lg-6 fs-md-5 w-lg-75">What We Provide</h2>
     <div class="row mt-5 gx-xl-7">
-      <div class="col-lg-4 col-md-6 mb-5 mb-md-0 text-center text-md-start h-auto">
-        <div class="d-flex justify-content-between flex-column h-100"><a href="#"><img class="w-md-100 w-75 rounded-2" src="{% static "assets/img/services/22.png" %}" alt="" /></a>
-          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-3"><a href="#">
-              <p class="fw-bold mb-0 text-black">Category</p>
+      
+      {% for product in  products %}
+      
+        <div class="col-lg-4 col-md-6 mb-5 mb-md-0 text-center text-md-start h-auto">
+          <div class="d-flex justify-content-between flex-column h-100">
+            <a href="#">
+              <img class="w-md-100 w-75 rounded-2" src="{% static "assets/img/services/22.png" %}" alt="" />
             </a>
-            <p class="mb-0">Biomarker</p>
-          </div>
-          <a href="#">
-            <h5 class="mt-1 mb-3 fs-0 fs-md-1">A microscope is an instrument that is used to magnify small objects.</h5>
-          </a>
-          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3 mb-md-5">
-            <p class="mb-0 text-gray">Microscope</p>
+            <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-3">
+              <a href="#">
+                <p class="fw-bold mb-0 text-black">Category</p>
+              </a>
+              <p class="mb-0">{{product.collection.title}}</p>
+            </div>
+            <a href="#">
+              <h5 class="mt-1 mb-3 fs-0 fs-md-1">{{product.description}}</h5>
+            </a>
+            <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3 mb-md-5">
+              <p class="mb-0 text-gray">{{product.title}}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-5 mb-md-0 text-center text-md-start h-auto">
+
+      {% endfor %}
+      {% comment %} <div class="col-lg-4 col-md-6 mb-5 mb-md-0 text-center text-md-start h-auto">
         <div class="d-flex justify-content-between flex-column h-100"><a href="#"><img class="w-md-100 w-75 rounded-2" src="{% static "assets/img/services/44.png" %}" alt="" /></a>
           <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-3"><a href="#">
               <p class="fw-bold mb-0 text-black">Category</p>
@@ -100,7 +109,7 @@ Products
             <p class="mb-0 text-gray">Monica Geller</p>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
     </div>
     <div class="text-center mb-4">
       <button class="btn btn-outline-dark">Load More</button>

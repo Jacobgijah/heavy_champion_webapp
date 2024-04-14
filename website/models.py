@@ -39,7 +39,7 @@ class Product(models.Model):
 
 class Services(models.Model):
   title = models.CharField(max_length=255)
-  description = models.TextField()
+  description = models.CharField(max_length=255)
   
   def __str__(self) -> str:
     return self.title

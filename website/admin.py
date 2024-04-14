@@ -56,7 +56,7 @@ class ProductAdmin(admin.ModelAdmin):
   
 @admin.register(models.Services)
 class ServicesAdmin(admin.ModelAdmin):
-  list_display = ['title']
+  list_display = ['title', 'description']
   list_per_page = 10
   search_fields = ['title']
 

@@ -19,11 +19,12 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-admin.site.site_header = 'THC Admin Site'
+admin.site.site_header = 'THC Administration'
+admin.site.site_title = 'THC + Admin Site'
 admin.site.index_title = 'Admin'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('', include('website.urls')),
 ]
 

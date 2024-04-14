@@ -24,7 +24,7 @@ class Product(models.Model):
   inventory = models.IntegerField()
   last_update = models.DateTimeField(auto_now=True)
   collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
-  promotions = models.ManyToManyField(Promotion)
+  promotions = models.ManyToManyField(Promotion, null=True, blank=True)
   
   def __str__(self) -> str:
     return self.title

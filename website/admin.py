@@ -26,6 +26,8 @@ class ProductAdmin(admin.ModelAdmin):
   prepopulated_fields = {
     'slug': ['title']
   }
+  exclude = ['promotions']
+  
   actions = ['clear_inventory']
   list_display = ['title', 'price', 'inventory_status', 'collection_title']
   list_editable = ['price']
@@ -39,7 +41,7 @@ class ProductAdmin(admin.ModelAdmin):
   
   @admin.display(ordering='inventory')
   def inventory_status(self, product):
-    if product.inventory < 10:
+    if product.inventory < 20:
       return 'LOW'
     return 'OK'
   

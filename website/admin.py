@@ -10,6 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
   list_editable = ['price']
   list_per_page = 10
   list_select_related = ['collection']
+  search_fields = ['title']
   
   def collection_title(self, product):
     return product.collection.title
@@ -24,6 +25,7 @@ class ProductAdmin(admin.ModelAdmin):
 class ServicesAdmin(admin.ModelAdmin):
   list_display = ['title']
   list_per_page = 10
+  search_fields = ['title']
 
 @admin.register(models.Collection)
 class CollectionAdmin(admin.ModelAdmin):

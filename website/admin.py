@@ -83,4 +83,7 @@ class CollectionAdmin(admin.ModelAdmin):
 
 @admin.register(models.Promotion)
 class PromotionAdmin(admin.ModelAdmin):
+  list_display = ['description', 'discount']
+  list_editable = ['discount']
   list_per_page = 10
+  ordering = ['discount']

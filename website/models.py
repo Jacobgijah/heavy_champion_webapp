@@ -37,13 +37,3 @@ class Product(models.Model):
   
   class Meta:
     ordering = ['title']
-
-class Services(models.Model):
-  title = models.CharField(max_length=255)
-  description = models.CharField(max_length=255)
-  
-  def __str__(self) -> str:
-    return self.title
-  
-  class Meta:
-    ordering = ['title']

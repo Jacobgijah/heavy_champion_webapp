@@ -53,12 +53,6 @@ class ProductAdmin(admin.ModelAdmin):
       f'{updated_count} products were successfully updated.'
     )
     
-  
-@admin.register(models.Services)
-class ServicesAdmin(admin.ModelAdmin):
-  list_display = ['title', 'description']
-  list_per_page = 10
-  search_fields = ['title']
 
 @admin.register(models.Collection)
 class CollectionAdmin(admin.ModelAdmin):

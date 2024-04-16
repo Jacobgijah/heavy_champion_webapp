@@ -81,3 +81,8 @@ class PromotionAdmin(admin.ModelAdmin):
   list_editable = ['discount']
   list_per_page = 10
   ordering = ['discount']
+
+@admin.register(models.Portifolio)
+class PortifolioAdmin(admin.ModelAdmin):
+  list_display = ['date', 'title', 'image']
+  list_per_page = 10

@@ -10,9 +10,9 @@ def about(request):
 def contact(request):
   return render(request, "pages/contact.html")
 
-def services(request):
-  services = Services.objects.all()
-  return render(request, "pages/services.html", {'services': services})
+def portifolio(request):
+  query_set = Portifolio.objects.all()
+  return render(request, "pages/portifolio.html", {'query_set': query_set})
 
 def products(request):
   products = Product.objects.all()

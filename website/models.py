@@ -37,3 +37,15 @@ class Product(models.Model):
   
   class Meta:
     ordering = ['title']
+
+class Portifolio(models.Model):
+  date = models.DateField()
+  title = models.CharField(max_length=255)
+  image = models.ImageField(default='portifolio.jpg', upload_to='portifolio_images')
+  description = models.TextField()
+  
+  def __str__(self) -> str:
+    return self.title
+  
+  class Meta:
+    ordering = ['-date']

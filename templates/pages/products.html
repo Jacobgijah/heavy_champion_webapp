@@ -15,6 +15,7 @@ Products
   <div class="container">
     <p class="text-center fs-1">Our Products</p>
     <h2 class="mx-auto text-center fs-lg-6 fs-md-5 w-lg-75">What We Provide</h2>
+    <p class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2 text-center fs-1">Categories </p>
     <div class="row mt-5 gx-xl-7">
       
       {% for product in  products %}
@@ -28,7 +29,7 @@ Products
               <a href="#">
                 <p class="fw-bold mb-0 text-black">Category</p>
               </a>
-              <p class="mb-0">{{product.collection.title}}</p>
+              <p class="mb-0">{{product.collection}}</p>
             </div>
             <a href="#">
               <h5 class="mt-1 mb-3 fs-0 fs-md-1">{{product.description}}</h5>

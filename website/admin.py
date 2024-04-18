@@ -86,3 +86,8 @@ class PromotionAdmin(admin.ModelAdmin):
 class PortifolioAdmin(admin.ModelAdmin):
   list_display = ['date', 'title', 'image']
   list_per_page = 10
+
+@admin.register(models.PriceList)
+class PriceListAdmin(admin.ModelAdmin):
+  list_display = ['date', 'title', 'file']
+  list_per_page = 10

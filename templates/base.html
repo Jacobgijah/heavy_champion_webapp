@@ -119,7 +119,6 @@
         <div class="row justify-content-between">
           <div class="col-lg-6 col-sm-12">
             <a href="{% url "index" %}">
-            {% comment %} <p class="mt-5 mb-4 display-6">THC</p> {% endcomment %}
               <img class="img-fluid mt-5 mb-4" src="{% static 'assets/img/black-logo-thc.jpg' %}" alt="" />
             </a>
             <p class="w-lg-75 text-gray">Our products comply with national regulations & are certified by relevant health authorities, ensuring the reliability and safety of our offering</p>
@@ -142,12 +141,16 @@
           <div class="col-lg-2 col-sm-4">
             <h3 class="fw-bold fs-1 mt-5 mb-4">Resources</h3>
             <ul class="list-unstyled">
-              <li class="mb-3"><a href="#">Price List</a><span class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2">View!</span></li>
+              <li class="mb-3">
+                <a href="{{ price_list.file.url }}" target="_blank">Price List
+                  <span class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2">View!</span>
+                </a>
+              </li>
               <li class="mb-3"><a href="{% url "products" %}">Products</a></li>
             </ul>
           </div>
         </div>
-        <p class="text-gray text-start">Designed by | <a class="text-secondary" href="#" target="_blank"><b><i>kilingesoftworks</i></b></a></p>
+        <p class="text-gray text-start">Designed by | <a class="text-secondary" href="https://wa.link/r1pem7" target="_blank"><b><i>kilingesoftworks</i></b></a></p>
       </div>
       <!-- end of .container-->
 

@@ -49,3 +49,8 @@ class Portifolio(models.Model):
   
   class Meta:
     ordering = ['-date']
+    
+class PriceList(models.Model):
+  date = models.DateTimeField(auto_now=True)
+  title = models.CharField(max_length=255)
+  file = models.FileField(upload_to='doc')

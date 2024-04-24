@@ -13,10 +13,10 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>THC + | 
-      {% block title %}
+    <title>
+    {% block title %}
       
-      {% endblock title %}
+    {% endblock title %} | THC +
     </title>
 
 
@@ -52,19 +52,23 @@
     <!-- ===============================================--> 
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" data-navbar-on-scroll="data-navbar-on-scroll">
       <div class="container">
-        <a class="navbar-brand" href="{% url "index" %}">
+        <a class="navbar-brand" href="{% url "website:index" %}">
           {% comment %} <span class="text-light display-6">THC</span> {% endcomment %}
           <img src="{% static 'assets/img/Logo_thc.png' %}" alt="the heavy champion logo" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa-solid fa-bars text-white fs-3"></i></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "index" %}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "about" %}">About</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "portifolio" %}">Portifolio</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "products" %}">Products</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "contact" %}">Contact</a></li>
-            <li class="nav-item mt-2 mt-lg-0"><a class="nav-link btn btn-light text-black w-md-25 w-50 w-lg-100" aria-current="page" href="#">Log In</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:index" %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:about" %}">About</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:portifolio" %}">Portifolio</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:products" %}">Products</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:contact" %}">Contact</a></li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item mt-2 mt-lg-0"><a class="nav-link btn btn-light text-black w-md-25 w-50 w-lg-100" aria-current="page" href="/admin/">{{user.username}}</a></li>
+            {% else %}
+            <li class="nav-item mt-2 mt-lg-0"><a class="nav-link btn btn-light text-black w-md-25 w-50 w-lg-100" aria-current="page" href="/admin/login/">Log In</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -118,7 +122,7 @@
       <div class="container">
         <div class="row justify-content-between">
           <div class="col-lg-6 col-sm-12">
-            <a href="{% url "index" %}">
+            <a href="{% url "website:index" %}">
               <img class="img-fluid mt-5 mb-4" src="{% static 'assets/img/black-logo-thc.jpg' %}" alt="" />
             </a>
             <p class="w-lg-75 text-gray">Our products comply with national regulations & are certified by relevant health authorities, ensuring the reliability and safety of our offering</p>
@@ -126,9 +130,9 @@
           <div class="col-lg-2 col-sm-4">
             <h3 class="fw-bold fs-1 mt-5 mb-4">Landings</h3>
             <ul class="list-unstyled">
-              <li class="mb-3"><a href="{% url "index" %}">Home</a></li>
-              <li class="mb-3"><a href="{% url "about" %}">About</a></li>
-              <li class="mb-3"><a href="{% url "portifolio" %}">Portifolio</a></li>
+              <li class="mb-3"><a href="{% url "website:index" %}">Home</a></li>
+              <li class="mb-3"><a href="{% url "website:about" %}">About</a></li>
+              <li class="mb-3"><a href="{% url "website:portifolio" %}">Portifolio</a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-sm-4">
@@ -142,11 +146,15 @@
             <h3 class="fw-bold fs-1 mt-5 mb-4">Resources</h3>
             <ul class="list-unstyled">
               <li class="mb-3">
-                <a href="{{ price_list.file.url }}" target="_blank">Price List
-                  <span class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2">View!</span>
-                </a>
+                  {% if price_list %}
+                      <a href="{{ price_list.file.url }}" target="_blank">Price List
+                        <span class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2">View!</span>
+                      </a>
+                  {% else %}
+                      <span>No price list available</span>
+                  {% endif %}
               </li>
-              <li class="mb-3"><a href="{% url "products" %}">Products</a></li>
+              <li class="mb-3"><a href="{% url "website:products" %}">Products</a></li>
             </ul>
           </div>
         </div>

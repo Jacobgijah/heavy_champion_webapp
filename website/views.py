@@ -1,57 +1,60 @@
-from django.shortcuts import render
+from django.db.models import Count
+from django.shortcuts import render, get_object_or_404
 from website.models import *
 
-def index(request):
-  # Retrieve the latest price list based on the upload date
-  price_list = PriceList.objects.latest('date')
 
+def index(request):
+  
   context = {
-    'price_list': price_list,
+    
   }
 
   return render(request, "pages/index.html", context)
 
 def about(request):
-  # Retrieve the latest price list based on the upload date
-  price_list = PriceList.objects.latest('date')
 
   context = {
-    'price_list': price_list,
+    
+
   }
 
   return render(request, "pages/about.html", context)
 
 def contact(request):
-  # Retrieve the latest price list based on the upload date
-  price_list = PriceList.objects.latest('date')
-
+  
   context = {
-    'price_list', price_list,
+
   }
 
   return render(request, "pages/contact.html", context)
 
 def portifolio(request):
-  # Retrieve the latest price list based on the upload date
-  price_list = PriceList.objects.latest('date') 
-  query_set = Portifolio.objects.all()
+  query_set = Portifolio.objects.all().order_by("-date")
   
   context = {
-    'price_list': price_list,
     'query_set': query_set,
   }
 
   return render(request, "pages/portifolio.html", context)
 
-def products(request):
-  # Retrieve the latest price list based on the upload date
-  price_list = PriceList.objects.latest('date') 
-  products = Product.objects.all()
+def products(request): 
+  products = Product.objects.filter(product_status="published")
+  category = Collection.objects.all()
 
   context = {
-    'price_list': price_list,
     'products': products,
+    'category': category
   }
 
   return render(request, "pages/products.html", context)
 
+
+def category(request, id):
+  category = Collection.objects.get(pk=id)
+  products = Product.objects.filter(product_status="published", collection=category)
+
+  context = {
+    "category": category,
+    "products": products,
+  }
+  return render(request, "pages/category.html", context)

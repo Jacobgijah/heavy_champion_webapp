@@ -29,8 +29,8 @@ class ProductAdmin(admin.ModelAdmin):
   exclude = ['promotions']
   
   actions = ['clear_inventory']
-  list_display = ['title', 'price', 'inventory_status', 'collection_title']
-  list_editable = ['price']
+  list_display = ['product_image', 'title', 'price', 'inventory_status', 'product_status']
+  list_editable = ['price', 'product_status']
   list_filter = ['collection', 'last_update', InventoryFilter]
   list_per_page = 10
   list_select_related = ['collection']

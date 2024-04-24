@@ -1,5 +1,16 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.html import mark_safe
+
+
+STATUS = (
+  ("draft", "Draft"),
+  ("disabled", "Disabled"),
+  ("rejected", "Rejected"),
+  ("in_review", "In Review"),
+  ("published", "Published"),
+)
+
 
 class Promotion(models.Model):
   description = models.CharField(max_length=255)
@@ -31,7 +42,11 @@ class Product(models.Model):
   collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
   promotions = models.ManyToManyField(Promotion, blank=True)
   image = models.ImageField(default='avatar.png', upload_to='product_images')
+  product_status = models.CharField(max_length=10, choices=STATUS, default="in_review")
   
+  def product_image(self):
+    return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+
   def __str__(self) -> str:
     return self.title
   
@@ -54,3 +69,6 @@ class PriceList(models.Model):
   date = models.DateTimeField(auto_now=True)
   title = models.CharField(max_length=255)
   file = models.FileField(upload_to='doc')
+
+  def __str__(self) -> str:
+    return self.title

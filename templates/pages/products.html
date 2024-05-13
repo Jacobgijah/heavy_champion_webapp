@@ -17,7 +17,7 @@ Products
     <h2 class="mx-auto text-center fs-lg-6 fs-md-5 w-lg-75">What We Provide</h2>
     <h5>
       {% for c in category %}
-      <a href="{% url 'website:category' c.id %}">
+      <a href="{% url 'website:category' c.cid %}">
         <span class="badge bg-success fw-bold text-dark ms-2 py-1 px-2">{{c.title}}</span> 
       </a>
       {%endfor%}

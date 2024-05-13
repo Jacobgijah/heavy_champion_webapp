@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ea1c45534a43e3238d3699fa24317f929880cb71c67158bb0f0ee691d9d3f362"
+            "sha256": "afb11bf058c305da8363552847f19f2465458048f5cb1ee6525a3f1abac696a7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -26,11 +26,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:4bd01a8c830bb77a8a3b0e7d8b25b887e536ad17a81ba2dce5476135c73312bd",
-                "sha256:916423499d75d62da7aa038d19aef23d23498d8df229775eb0a6309ee1013775"
+                "sha256:8af4f166dc9a2bb822f9374cd78e34a10c286b402597fe2c7fb97c131656ba65",
+                "sha256:dc95c9cb2a37ba54599d9d1c8faf81609d36f3e74cd04395ce1300573e57baf9"
             ],
             "index": "pypi",
-            "version": "==5.0.4"
+            "version": "==5.0.5"
         },
         "django-jazzmin": {
             "hashes": [
@@ -39,6 +39,13 @@
             ],
             "index": "pypi",
             "version": "==3.0.0"
+        },
+        "django-shortuuidfield": {
+            "hashes": [
+                "sha256:a292c0fe5538abe947b131e2b914edd9ac44afcc6a40eaec71448e6231a3ef00"
+            ],
+            "index": "pypi",
+            "version": "==0.1.3"
         },
         "pillow": {
             "hashes": [
@@ -122,6 +129,22 @@
             ],
             "index": "pypi",
             "version": "==1.1.0"
+        },
+        "shortuuid": {
+            "hashes": [
+                "sha256:3bb9cf07f606260584b1df46399c0b87dd84773e7b25912b7e391e30797c5e72",
+                "sha256:a482a497300b49b4953e15108a7913244e1bb0d41f9d332f5e9925dba33a3c5a"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==1.0.13"
+        },
+        "six": {
+            "hashes": [
+                "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
+                "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==1.16.0"
         },
         "sqlparse": {
             "hashes": [

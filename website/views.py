@@ -49,8 +49,8 @@ def products(request):
   return render(request, "pages/products.html", context)
 
 
-def category(request, id):
-  category = Collection.objects.get(pk=id)
+def category(request, cid):
+  category = Collection.objects.get(cid=cid)
   products = Product.objects.filter(product_status="published", collection=category)
 
   context = {

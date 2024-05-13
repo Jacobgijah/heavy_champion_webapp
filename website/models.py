@@ -1,7 +1,14 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.html import mark_safe
+from shortuuid.django_fields import ShortUUIDField
 
+
+STATUS_CHOICES = (
+  ("process", "Processing"),
+  ("shipped", "Shipped"),
+  ("delivered", "Delivered"),
+)
 
 STATUS = (
   ("draft", "Draft"),
@@ -11,47 +18,94 @@ STATUS = (
   ("published", "Published"),
 )
 
+RATING = (
+  (1, "★☆☆☆☆"),
+  (2, "★★☆☆☆"),
+  (3, "★★★☆☆"),
+  (4, "★★★★☆"),
+  (5, "★★★★★"),
+)
 
-class Promotion(models.Model):
-  description = models.CharField(max_length=255)
-  discount = models.FloatField()
-  
-  def __str__(self) -> str:
-    return self.description
+
+
 class Collection(models.Model):
-  title = models.CharField(max_length=255)
+  cid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="cat", alphabet="abcdefgh12345")
+  title = models.CharField(max_length=255, default="Biomedical")
   featured_product = models.ForeignKey('Product', on_delete=models.SET_NULL,
                                        null=True, blank=True, related_name='+')
-  
-  def __str__(self) -> str:
-    return self.title
   
   class Meta:
     ordering = ['title']
   
+  def __str__(self) -> str:
+    return self.title
+  
+
+class Vendor(models.Model):
+  vid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="ven", alphabet="abcdefgh12345")
+  
+  title = models.CharField(max_length=100, default="Vendor")
+  image = models.ImageField(upload_to="vendor-images", default="vendor.jpg")
+  description = models.TextField(null=True, blank=True)
+
+  address = models.CharField(max_length=100, default="10 Kinondoni Dar es Salaam")
+  contact = models.CharField(max_length=100, default="+255 000 000 000")
+  chat_resp_time = models.CharField(max_length=100, default=100)
+  shipping_on_time = models.CharField(max_length=100, default=100)
+  authentic_rating = models.CharField(max_length=100, default=100)
+  days_return = models.CharField(max_length=100, default=100)
+  warranty_period = models.CharField(max_length=100, default=100)
+
+  
 class Product(models.Model):
-  title = models.CharField(max_length=255)
-  slug = models.CharField(max_length=255)
-  description = models.TextField()
-  price = models.DecimalField(
-    max_digits=10,
-    decimal_places=2,
-    validators=[MinValueValidator(100)])
-  inventory = models.IntegerField(validators=[MinValueValidator(0)])
-  last_update = models.DateTimeField(auto_now=True)
-  collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
-  promotions = models.ManyToManyField(Promotion, blank=True)
+  pid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefgh12345")
+  
+  collection = models.ForeignKey(Collection, on_delete=models.SET_NULL, null=True)
+
+  title = models.CharField(max_length=100, default="Product")
+  slug = models.CharField(max_length=100)
   image = models.ImageField(default='avatar.png', upload_to='product_images')
+  description = models.TextField(null=True, blank=True, default="This is a product")
+
+  price = models.DecimalField(max_digits=999999999999, decimal_places=2, default="10000.00", validators=[MinValueValidator(100)])
+  old_price = models.DecimalField(max_digits=999999999999, decimal_places=2, default="20000.00", validators=[MinValueValidator(100)])
+  specifications = models.TextField(null=True, blank=True)
+  
   product_status = models.CharField(max_length=10, choices=STATUS, default="in_review")
   
+  status = models.BooleanField(default=True)
+  in_stock = models.BooleanField(default=True)
+  featured = models.BooleanField(default=False)
+
+  sku = ShortUUIDField(unique=True, length=4, max_length=10, prefix="sku", alphabet="1234567890")
+
+  inventory = models.IntegerField(validators=[MinValueValidator(0)])
+  
+  created_at = models.DateTimeField(auto_now=True)
+  updated_at = models.DateTimeField(auto_now_add=True)
+
+  class Meta:
+    ordering = ['title']
+
   def product_image(self):
     return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
 
   def __str__(self) -> str:
     return self.title
   
+  def get_percentage(self):
+    new_price = (self.price / self.old_price) * 100
+    return new_price
+  
+
+class ProductImages(models.Model):
+  images = models.ImageField(upload_to="product-images", default="product.jpg")
+  product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+  created_at = models.DateTimeField(auto_now_add=True)
+
   class Meta:
-    ordering = ['title']
+    verbose_name_plural = "Product Images"
+
 
 class Portifolio(models.Model):
   date = models.DateField()
@@ -64,7 +118,16 @@ class Portifolio(models.Model):
   
   class Meta:
     ordering = ['-date']
-    
+
+
+class PortifolioImages(models.Model):
+  images = models.ImageField(upload_to="Portifolio-images", default="portifolio.jpg")
+  portifolio = models.ForeignKey(Portifolio, on_delete=models.CASCADE, null=True)
+  created_at = models.DateTimeField(auto_now_add=True)
+
+  class Meta:
+    verbose_name_plural = "Portifolio Images"
+
 class PriceList(models.Model):
   date = models.DateTimeField(auto_now=True)
   title = models.CharField(max_length=255)

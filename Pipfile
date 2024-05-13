@@ -8,6 +8,7 @@ django = "*"
 pymysql = "*"
 pillow = "*"
 django-jazzmin = "*"
+django-shortuuidfield = "*"
 
 [dev-packages]
 

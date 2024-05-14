@@ -129,9 +129,9 @@ class PortifolioImages(models.Model):
     verbose_name_plural = "Portifolio Images"
 
 class PriceList(models.Model):
-  date = models.DateTimeField(auto_now=True)
-  title = models.CharField(max_length=255)
-  file = models.FileField(upload_to='doc')
+  date = models.DateTimeField(auto_now_add=True)
+  title = models.CharField(max_length=255, default="Product Price List")
+  file = models.FileField(upload_to='doc', default="priceList.txt")
 
   def __str__(self) -> str:
     return self.title

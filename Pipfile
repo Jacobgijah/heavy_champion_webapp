@@ -12,6 +12,8 @@ django-shortuuidfield = "*"
 dj-database-url = "*"
 psycopg2-binary = "*"
 gunicorn = "*"
+whitenoise = "*"
+uvicorn = "*"
 
 [dev-packages]
 

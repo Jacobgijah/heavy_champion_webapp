@@ -11,6 +11,7 @@ def index(request):
 
   return render(request, "pages/index.html", context)
 
+
 def about(request):
 
   context = {
@@ -20,6 +21,7 @@ def about(request):
 
   return render(request, "pages/about.html", context)
 
+
 def contact(request):
   
   context = {
@@ -27,6 +29,7 @@ def contact(request):
   }
 
   return render(request, "pages/contact.html", context)
+
 
 def portifolio(request):
   query_set = Portifolio.objects.all().order_by("-date")
@@ -36,6 +39,7 @@ def portifolio(request):
   }
 
   return render(request, "pages/portifolio.html", context)
+
 
 def products(request): 
   products = Product.objects.filter(product_status="published")

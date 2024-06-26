@@ -3,7 +3,6 @@ from django.db import models
 from django.utils.html import mark_safe
 from shortuuid.django_fields import ShortUUIDField
 
-
 STATUS_CHOICES = (
   ("process", "Processing"),
   ("shipped", "Shipped"),
@@ -26,8 +25,6 @@ RATING = (
   (5, "★★★★★"),
 )
 
-
-
 class Collection(models.Model):
   cid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="cat", alphabet="abcdefgh12345")
   title = models.CharField(max_length=255, default="Biomedical")
@@ -39,15 +36,12 @@ class Collection(models.Model):
   
   def __str__(self) -> str:
     return self.title
-  
 
 class Vendor(models.Model):
   vid = ShortUUIDField(unique=True, length=10, max_length=20, prefix="ven", alphabet="abcdefgh12345")
-  
   title = models.CharField(max_length=100, default="Vendor")
   image = models.ImageField(upload_to="vendor-images", default="vendor.jpg")
   description = models.TextField(null=True, blank=True)
-
   address = models.CharField(max_length=100, default="10 Kinondoni Dar es Salaam")
   contact = models.CharField(max_length=100, default="+255 000 000 000")
   chat_resp_time = models.CharField(max_length=100, default=100)
@@ -56,31 +50,22 @@ class Vendor(models.Model):
   days_return = models.CharField(max_length=100, default=100)
   warranty_period = models.CharField(max_length=100, default=100)
 
-  
 class Product(models.Model):
   pid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefgh12345")
-  
   collection = models.ForeignKey(Collection, on_delete=models.SET_NULL, null=True)
-
   title = models.CharField(max_length=100, default="Product")
   slug = models.CharField(max_length=100)
   image = models.ImageField(default='avatar.png', upload_to='product_images')
   description = models.TextField(null=True, blank=True, default="This is a product")
-
-  price = models.DecimalField(max_digits=999999999999, decimal_places=2, default="10000.00", validators=[MinValueValidator(100)])
-  old_price = models.DecimalField(max_digits=999999999999, decimal_places=2, default="20000.00", validators=[MinValueValidator(100)])
+  price = models.DecimalField(max_digits=10, decimal_places=2, default="10000.00", validators=[MinValueValidator(100)])
+  old_price = models.DecimalField(max_digits=10, decimal_places=2, default="20000.00", validators=[MinValueValidator(100)])
   specifications = models.TextField(null=True, blank=True)
-  
   product_status = models.CharField(max_length=10, choices=STATUS, default="in_review")
-  
   status = models.BooleanField(default=True)
   in_stock = models.BooleanField(default=True)
   featured = models.BooleanField(default=False)
-
   sku = ShortUUIDField(unique=True, length=4, max_length=10, prefix="sku", alphabet="1234567890")
-
   inventory = models.IntegerField(validators=[MinValueValidator(0)])
-  
   created_at = models.DateTimeField(auto_now=True)
   updated_at = models.DateTimeField(auto_now_add=True)
 
@@ -96,7 +81,6 @@ class Product(models.Model):
   def get_percentage(self):
     new_price = (self.price / self.old_price) * 100
     return new_price
-  
 
 class ProductImages(models.Model):
   images = models.ImageField(upload_to="product-images", default="product.jpg")
@@ -105,7 +89,6 @@ class ProductImages(models.Model):
 
   class Meta:
     verbose_name_plural = "Product Images"
-
 
 class Portifolio(models.Model):
   date = models.DateField()
@@ -118,7 +101,6 @@ class Portifolio(models.Model):
   
   class Meta:
     ordering = ['-date']
-
 
 class PortifolioImages(models.Model):
   images = models.ImageField(upload_to="Portifolio-images", default="portifolio.jpg")

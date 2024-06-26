@@ -9,6 +9,8 @@ pymysql = "*"
 pillow = "*"
 django-jazzmin = "*"
 django-shortuuidfield = "*"
+dj-database-url = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

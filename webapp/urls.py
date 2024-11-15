@@ -24,7 +24,7 @@ admin.site.site_title = 'THC + Admin Site'
 admin.site.index_title = 'Admin'
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name='admin'),
+    path('hifadhi/', admin.site.urls, name='admin'),
     path('', include('website.urls')),
 ]
 

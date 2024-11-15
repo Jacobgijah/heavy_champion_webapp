@@ -62,3 +62,16 @@ def category(request, cid):
     "products": products,
   }
   return render(request, "pages/category.html", context)
+
+
+def careers(request):
+    # This is a simple view, you can expand it later to add dynamic data
+    context = {
+        'message': "This page is under development"
+    }
+    return render(request, "pages/careers.html", context)
+
+
+# Add the custom 404 view
+def custom_404(request, exception=None):
+  return render(request, '404.html', status=404)

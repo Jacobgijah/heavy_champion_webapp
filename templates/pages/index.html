@@ -80,4 +80,65 @@ Home
   <!-- <Mission section> close ============================-->
   <!-- ============================================-->
 
+<!-- ============================================-->
+<!-- <Promotional Products section> begin ============================-->
+<section class="bg-light py-6">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-12 text-center">
+        <h2 class="fs-4 text-uppercase text-dark">Our Featured Products</h2>
+        <p class="text-muted">Discover our range of innovative and reliable medical equipment designed to improve healthcare outcomes.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <!-- Product Card 1 -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm position-relative">
+          <!-- "New" Label -->
+          <span class="badge new-label position-absolute top-0 start-0 m-2 text-white px-3 py-1">New</span>
+          <img class="card-img-top" src="{% static 'assets/img/products/product2.jpg' %}" alt="Product 1" width="200px" height="300px">
+          <div class="card-body">
+            <h5 class="card-title">Diagnostic Equipment</h5>
+            <p class="card-text text-muted">State-of-the-art diagnostic tools ensuring precise results for improved patient care.</p>
+            <a href="#" class="btn btn-success text-black">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Product Card 2 -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm position-relative">
+          <!-- "New" Label -->
+          <span class="badge new-label position-absolute top-0 start-0 m-2 text-white px-3 py-1">New</span>
+          <img class="card-img-top" src="{% static 'assets/img/products/product3.jpg' %}" alt="Product 2" width="200px" height="300px">
+          <div class="card-body">
+            <h5 class="card-title">Immunohistochemistry</h5>
+            <p class="card-text text-muted">High-quality lab supplies for efficient and accurate testing and experimentation.</p>
+            <a href="#" class="btn btn-success text-black">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Product Card 3 -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm position-relative">
+          <!-- "New" Label -->
+          <span class="badge new-label position-absolute top-0 start-0 m-2 text-white px-3 py-1">New</span>
+          <img class="card-img-top" src="{% static 'assets/img/products/product6.png' %}" alt="Product 3" width="200px" height="300px">
+          <div class="card-body">
+            <h5 class="card-title">Media & Supplements</h5>
+            <p class="card-text text-muted">Precision-engineered surgical tools for seamless and safe medical procedures.</p>
+            <a href="#" class="btn btn-success text-black">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Additional promotional content -->
+    <div class="text-center mt-5">
+      <p class="text-muted">Explore our full catalog for a comprehensive selection of products tailored to your needs.</p>
+      <a href="{% url 'website:products' %}" class="btn btn-dark">View All Products</a>
+    </div>
+  </div>
+</section>
+<!-- <Promotional Products section> close ============================-->
+
+
 {% endblock main %}

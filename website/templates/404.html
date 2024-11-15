@@ -1,0 +1,18 @@
+{% extends "../../templates/base.html" %}
+
+{% block title %}
+  Page Not Found
+{% endblock %}
+
+{% block main %}
+  <section class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8 text-center">
+        <h1 class="display-3 fw-bold text-danger">404</h1>
+        <h2 class="h4 mb-4">Oops! The page you're looking for can't be found.</h2>
+        <p class="lead">It seems that the page you were trying to reach does not exist or has been moved.</p>
+        <a href="{% url 'website:index' %}" class="btn btn-primary mt-4">Go Back to Home</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

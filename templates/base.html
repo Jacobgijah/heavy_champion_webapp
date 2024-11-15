@@ -1,188 +1,149 @@
 <!DOCTYPE html>
-
 {% load static %}
-
 <html lang="en-US" dir="ltr">
 
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title>
+    {% block title %}{% endblock title %} | THC +
+  </title>
 
-    <!-- ===============================================-->
-    <!--    Document Title-->
-    <!-- ===============================================-->
-    <title>
-    {% block title %}
-      
-    {% endblock title %} | THC +
-    </title>
+  <!-- ===============================================-->
+  <!--    Favicons-->
+  <!-- ===============================================-->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico' %}">
+  <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json' %}">
+  <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png' %}">
+  <meta name="theme-color" content="#ffffff">
 
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="{% static 'vendors/prism/prism.css' %}" rel="stylesheet">
+  <link href="{% static 'vendors/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/css/user.css' %}" rel="stylesheet" />
+</head>
 
-    <!-- ===============================================-->
-    <!--    Favicons-->
-    <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico' %}">
-    <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json' %}">
-    <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png' %}">
-    <meta name="theme-color" content="#ffffff">
+<body>
 
+  <!-- ===============================================-->
+  <!--    Navigation -->
+  <!-- ===============================================-->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" data-navbar-on-scroll="data-navbar-on-scroll">
+    <div class="container">
+      <a class="navbar-brand" href="{% url "website:index" %}">
+        <img src="{% static 'assets/img/Logo_thc.png' %}" alt="The Heavy Champion Logo" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars text-white fs-3"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+          <li class="nav-item"><a class="nav-link" href="{% url 'website:index' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'website:about' %}">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'website:portifolio' %}">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'website:products' %}">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'website:contact' %}">Contact</a></li>
 
-    <!-- ===============================================-->
-    <!--    Stylesheets-->
-    <!-- ===============================================-->
-    {% comment %} <link rel="preconnect" href="https://fonts.gstatic.com"> {% endcomment %}
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link href="{% static 'vendors/prism/prism.css' %}" rel="stylesheet">
-    <link href="{% static 'vendors/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/css/user.css' %}" rel="stylesheet" />
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  </head>
+  <!-- ===============================================-->
+  <!--    Main Content-->
+  <!-- ===============================================-->
+  <main class="main" id="top">
+    {% block main %}
+    {% endblock main %}
+  </main>
 
-
-  <body>
-
-    <!-- ===============================================-->
-    <!--    Navigation -->
-    <!-- ===============================================--> 
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" data-navbar-on-scroll="data-navbar-on-scroll">
-      <div class="container">
-        <a class="navbar-brand" href="{% url "website:index" %}">
-          {% comment %} <span class="text-light display-6">THC</span> {% endcomment %}
-          <img src="{% static 'assets/img/Logo_thc.png' %}" alt="the heavy champion logo" />
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa-solid fa-bars text-white fs-3"></i></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:index" %}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:about" %}">About</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:portifolio" %}">Portifolio</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:products" %}">Products</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "website:contact" %}">Contact</a></li>
-            {% if request.user.is_authenticated %}
-            <li class="nav-item mt-2 mt-lg-0"><a class="nav-link btn btn-light text-black w-md-25 w-50 w-lg-100" aria-current="page" href="/admin/">{{user.username}}</a></li>
-            {% else %}
-            <li class="nav-item mt-2 mt-lg-0"><a class="nav-link btn btn-light text-black w-md-25 w-50 w-lg-100" aria-current="page" href="/admin/login/">Log In</a></li>
-            {% endif %}
+  <!-- ===============================================-->
+  <!--    Footer Section-->
+  <!-- ===============================================-->
+  <footer class="pt-0">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-lg-6 col-sm-12">
+          <a href="{% url "website:index" %}">
+            <img class="img-fluid mt-5 mb-4" src="{% static 'assets/img/black-logo-thc.jpg' %}" alt="Black THC Logo" />
+          </a>
+          <p class="w-lg-75 text-gray">Our products comply with national regulations & are certified by relevant health authorities, ensuring the reliability and safety of our offerings.</p>
+        </div>
+        <div class="col-lg-2 col-sm-4">
+          <h3 class="fw-bold fs-1 mt-5 mb-4">Landings</h3>
+          <ul class="list-unstyled">
+            <li class="mb-3"><a href="{% url "website:index" %}">Home</a></li>
+            <li class="mb-3"><a href="{% url "website:about" %}">About</a></li>
+            <li class="mb-3"><a href="{% url "website:portifolio" %}">Portfolio</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-sm-4">
+          <h3 class="fw-bold fs-1 mt-5 mb-4">Company</h3>
+          <ul class="list-unstyled">
+            <li class="my-3"><a href="https://www.instagram.com/freshink_digital/" target="_blank">FreshInk Digital</a></li>
+            <li class="my-3"><a href="{% url 'website:careers' %}">Careers</a><span class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2">Hiring!</span></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-sm-4">
+          <h3 class="fw-bold fs-1 mt-5 mb-4">Resources</h3>
+          <ul class="list-unstyled">
+            <li class="mb-3">
+              {% if price_list %}
+              <a href="{{ price_list.file.url }}" target="_blank">Price List
+                <span class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2">View!</span>
+              </a>
+              {% else %}
+              <span>No price list available</span>
+              {% endif %}
+            </li>
+            <li class="mb-3"><a href="{% url "website:products" %}">Products</a></li>
+            <!-- Admin Login/Account Dropdown -->
+          {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle btn btn-light text-dark w-md-25 w-50 w-lg-100" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user"></i> {{ user.username }}
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link btn bg-success fw-bold text-dark w-md-25 w-50 w-lg-100" href="/hifadhi/login/">
+              <i class="fa-solid fa-right-to-bracket"></i> Log In
+            </a>
+          </li>
+          {% endif %}
           </ul>
         </div>
       </div>
-    </nav>
+      <p class="text-gray text-start">Designed & Maintained by | <a class="text-secondary" href="https://www.instagram.com/freshink_digital/" target="_blank"><b><i>FreshInk Digital</i></b></a></p>
+    </div>
+  </footer>
 
-    <!-- ===============================================-->
-    <!--    Main Content-->
-    <!-- ===============================================-->
-    <main class="main" id="top">
-
-        {% block main %}
-
-        {% endblock main %}
-
-      </main>
-    <!-- ===============================================-->
-    <!--    End of Main Content-->
-    <!-- ===============================================-->  
-    <!-- ============================================-->
-
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
-      <section>
-
-        <div class="container bg-dark overflow-hidden rounded-1">
-          <div class="bg-holder" style="background-image:url({% static "assets/img/promo/promo-bg.png" %});">
-          </div>
-          <!--/.bg-holder-->
-  
-          <div class="px-5 py-7 position-relative">
-            <h1 class="text-center w-lg-75 mx-auto fs-lg-6 fs-md-4 fs-3 text-white">We remain steadfast in our dedication to Service excellence</h1>
-            <div class="row justify-content-center mt-5">
-              <div class="col-auto w-100 w-lg-50">
-                <input class="form-control mb-2 border-light fs-1" type="email" placeholder="Your email address" />
-              </div>
-              <div class="col-auto mt-2 mt-lg-0">
-                <button class="btn btn-success text-dark fs-1">Start now</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end of .container-->
-  
-      </section>
-    <!-- <section> close ============================-->
-    <!-- ============================================-->    
-
-    <!-- <footer> begin ============================-->
-    <section class="pt-0">
-
-      <div class="container">
-        <div class="row justify-content-between">
-          <div class="col-lg-6 col-sm-12">
-            <a href="{% url "website:index" %}">
-              <img class="img-fluid mt-5 mb-4" src="{% static 'assets/img/black-logo-thc.jpg' %}" alt="" />
-            </a>
-            <p class="w-lg-75 text-gray">Our products comply with national regulations & are certified by relevant health authorities, ensuring the reliability and safety of our offering</p>
-          </div>
-          <div class="col-lg-2 col-sm-4">
-            <h3 class="fw-bold fs-1 mt-5 mb-4">Landings</h3>
-            <ul class="list-unstyled">
-              <li class="mb-3"><a href="{% url "website:index" %}">Home</a></li>
-              <li class="mb-3"><a href="{% url "website:about" %}">About</a></li>
-              <li class="mb-3"><a href="{% url "website:portifolio" %}">Portifolio</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-sm-4">
-            <h3 class="fw-bold fs-1 mt-5 mb-4">Company</h3>
-            <ul class="list-unstyled">
-              <li class="my-3"><a href="#" target="_blank">Kilinge Softworks</a></li>
-              <li class="my-3"><a href="#" target="_blank">Careers</a><span class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2">Hiring!</span></li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-sm-4">
-            <h3 class="fw-bold fs-1 mt-5 mb-4">Resources</h3>
-            <ul class="list-unstyled">
-              <li class="mb-3">
-                  {% if price_list %}
-                      <a href="{{ price_list.file.url }}" target="_blank">Price List
-                        <span class="py-1 px-2 rounded-2 bg-success fw-bold text-dark ms-2">View!</span>
-                      </a>
-                  {% else %}
-                      <span>No price list available</span>
-                  {% endif %}
-              </li>
-              <li class="mb-3"><a href="{% url "website:products" %}">Products</a></li>
-            </ul>
-          </div>
-        </div>
-        <p class="text-gray text-start">Designed by | <a class="text-secondary" href="https://wa.link/r1pem7" target="_blank"><b><i>kilingesoftworks</i></b></a></p>
-      </div>
-      <!-- end of .container-->
-
-    </section>
-    <!-- <footer> close ============================-->
-    <!-- ============================================-->
-
-
-
-
-    <!-- ===============================================-->
-    <!--    JavaScripts-->
-    <!-- ===============================================-->
-    <script src="{% static 'vendors/popper/popper.min.js' %}"></script>
-    <script src="{% static 'vendors/bootstrap/bootstrap.min.js' %}"></script>
-    <script src="{% static 'vendors/anchorjs/anchor.min.js' %}"></script>
-    <script src="{% static 'vendors/is/is.min.js' %}"></script>
-    <script src="{% static 'vendors/fontawesome/all.min.js' %}"></script>
-    <script src="{% static 'vendors/lodash/lodash.min.js' %}"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="{% static 'vendors/prism/prism.js' %}"></script>
-    <script src="{% static 'vendors/swiper/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'assets/js/theme.js' %}"></script>
-
-  </body>
+  <!-- ===============================================-->
+  <!--    JavaScripts-->
+  <!-- ===============================================-->
+  <script src="{% static 'vendors/popper/popper.min.js' %}"></script>
+  <script src="{% static 'vendors/bootstrap/bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendors/anchorjs/anchor.min.js' %}"></script>
+  <script src="{% static 'vendors/is/is.min.js' %}"></script>
+  <script src="{% static 'vendors/fontawesome/all.min.js' %}"></script>
+  <script src="{% static 'vendors/lodash/lodash.min.js' %}"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="{% static 'vendors/prism/prism.js' %}"></script>
+  <script src="{% static 'vendors/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/theme.js' %}"></script>
+</body>
 
 </html>

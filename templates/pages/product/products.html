@@ -1,0 +1,84 @@
+{% extends "../../base.html" %} {% load static %} {% block title %} Products {%
+endblock title %} {% block main %}
+
+<!-- ============================================-->
+<!-- <section> begin ============================-->
+<section class="mt-6">
+  <div class="container">
+    <p class="text-center fs-1">Our Products</p>
+    <h2 class="mx-auto text-center fs-lg-6 fs-md-5 w-lg-75">What We Provide</h2>
+    <h5>
+      {% for c in category %}
+      <a href="{% url 'website:category' c.cid %}">
+        <span class="badge bg-success fw-bold text-dark ms-2 py-1 px-2"
+          >{{ c.title }}</span
+        >
+      </a>
+      {% endfor %}
+    </h5>
+    <div class="row mt-5 gx-xl-7">
+      {% for product in page_obj %}
+      <div
+        class="col-lg-4 col-md-6 mb-5 mb-md-0 text-center text-md-start h-auto"
+      >
+        <div class="d-flex justify-content-between flex-column h-100">
+          <a href="{% url 'website:product_detail' product.pid %}">
+            <img
+              class="w-md-100 w-75 rounded-2"
+              src="{{ product.image.url }}"
+              alt="{{ product.title }}"
+            />
+          </a>
+
+          <div
+            class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-3"
+          >
+            <a href="#">
+              <p class="fw-bold mb-0 text-black">Category</p>
+            </a>
+            <p class="mb-0">{{ product.collection }}</p>
+          </div>
+          <a href="#">
+            <h5 class="mt-1 mb-3 fs-0 fs-md-1">{{ product.description }}</h5>
+          </a>
+          <div
+            class="d-flex align-items-center justify-content-center justify-content-md-start gap-3 mb-md-5"
+          >
+            <p class="mb-0 text-gray">{{ product.title }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="text-center mb-4">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a
+              class="btn btn-outline-dark"
+              href="?page={{ page_obj.previous_page_number }}"
+              >Previous</a
+            >
+          </li>
+          {% endif %} {% if page_obj.has_next %}
+          <li class="page-item">
+            <a
+              class="btn btn-outline-dark"
+              href="?page={{ page_obj.next_page_number }}"
+              >Next</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- end of .container-->
+</section>
+<!-- <section> close ============================-->
+<!-- ============================================-->
+
+{% endblock main %}

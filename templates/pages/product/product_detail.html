@@ -1,0 +1,62 @@
+{% extends "../../base.html" %} {% block title %} {{ product.title }} - Details
+{% endblock title %} {% block main %}
+<section class="mt-6">
+  <div class="container">
+    <div class="row">
+      <!-- Product Images -->
+      <div class="col-md-6 text-center">
+        <img
+          class="rounded-3 w-50 mb-4"
+          src="{{ product.image.url }}"
+          alt="{{ product.title }}"
+        />
+        <div class="d-flex justify-content-center gap-2">
+          {% for image in product_images %}
+          <img
+            class="rounded-2 border"
+            src="{{ image.images.url }}"
+            alt="{{ product.title }}"
+            width="100"
+          />
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="col-md-6">
+        <h2 class="mb-2">{{ product.title }}</h2>
+        <p class="fs-4 text-muted mb-2">
+          Price:
+          <span class="text-danger fw-bold">Tshs {{ product.price }}</span>
+          {% if product.old_price %}
+          <span class="text-decoration-line-through text-muted fs-5"
+            >Tshs {{ product.old_price }}</span
+          >
+          {% endif %}
+        </p>
+        <p class="mb-2">{{ product.description }}</p>
+        <ul class="list-unstyled">
+          <li><strong>Specifications:</strong> {{ product.specifications }}</li>
+          <li>
+            <strong>Stock:</strong>
+            {% if product.in_stock %} 
+              In Stock 
+            {% else %} 
+              Out of Stock 
+            {% endif %}
+          </li>
+
+          <li><strong>SKU:</strong> {{ product.sku }}</li>
+        </ul>
+        <a 
+          href="https://wa.me/{{ whatsapp_number }}?text=Hello The Heavy Champion Ltd!%20I%20am%20interested%20in%20buying%20the%20product%20{{ product.title }}.%20Price:%20Tshs {{ product.price }}%20SKU:%20{{ product.sku }}"
+          class="btn btn-dark mt-2"
+          target="_blank"
+        >
+          Buy Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock main %}

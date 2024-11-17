@@ -13,6 +13,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('portifolio/', views.portifolio, name='portifolio'),
     path('products/', views.products, name='products'),
+    path('product/<str:pid>/', views.product_detail, name='product_detail'),
     path('category/<cid>', views.category, name='category'),
     path('careers/', views.careers, name='careers'),  # New careers page
 ]

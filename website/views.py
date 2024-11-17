@@ -1,6 +1,7 @@
 from django import forms
 from django.core.validators import RegexValidator
 from django.core.mail import send_mail
+from django.conf import settings
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from website.models import *
@@ -64,15 +65,20 @@ def contact(request):
             message = form.cleaned_data['message']
 
             try:
-                # Attempt to send an email (replace with actual email backend)
+                # Attempt to send an email
                 send_mail(
                     subject=f"Contact Form Submission by {name}",
                     message=f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}",
-                    from_email=email,
-                    recipient_list=['director@theheavychampion.co.tz'],  # Your email
+                    from_email=settings.EMAIL_HOST_USER,  # Use the configured sender's email address
+                    recipient_list=['jacobgijjah@gmail.com'],
+                    fail_silently=False,  # Set to False to debug errors during email sending
                 )
                 response_message = "Your message has been sent successfully!"
                 response_status = "success"
+                
+                # Clear the form after submission
+                form = ContactForm()  # Reset the form instance after successful submission
+
             except Exception as e:
                 response_message = "Failed to send your message. Please try again later."
                 response_status = "error"
@@ -89,6 +95,7 @@ def contact(request):
         'response_message': response_message,
         'response_status': response_status,
     })
+
 
 
 def portifolio(request):

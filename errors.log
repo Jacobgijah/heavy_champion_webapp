@@ -733,3 +733,81 @@ Traceback (most recent call last):
   File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/template/base.py", line 603, in find_filter
     raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
 django.template.exceptions.TemplateSyntaxError: Invalid filter: 'add_class'
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: website_pricelist
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/myprojects/django/heavy_champion_webapp/website/views.py", line 16, in index
+    return render(request, "pages/index.html", context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+  File "/usr/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/template/context.py", line 254, in bind_template
+    context = processor(self.request)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/myprojects/django/heavy_champion_webapp/website/context_processor.py", line 7, in default
+    price_list = get_object_or_404(PriceList.objects.order_by("-date"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jeco/.local/share/virtualenvs/heavy_champion_webapp-WbPUGAGY/lib/python3.11/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: website_pricelist

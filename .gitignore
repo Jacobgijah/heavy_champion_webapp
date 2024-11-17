@@ -1,3 +1,47 @@
-frontend/
-webapp/__pycache__
-website/__pycache__
+# Django settings files
+*.env
+*.local
+*.sqlite3
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Django migrations
+*/migrations/*
+!*/migrations/__init__.py
+
+# Media and static files (depending on your setup, you may want to ignore these)
+media/
+static/
+
+# Log files
+*.log
+
+# cPanel specific (sometimes useful to exclude certain server configurations)
+*.pid
+*.gz
+
+# IDEs and text editor specific files (you may want to ignore these based on your development environment)
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Database files (ignore local development SQLite or others)
+*.sqlite3
+
+# Django's default settings.py can be ignored if you have a separate config management for production
+# settings.py
+
+# Django secret key file (if using a separate one)
+SECRET_KEY.txt
+
+# Django local config files (for example, local debug settings)
+local_settings.py

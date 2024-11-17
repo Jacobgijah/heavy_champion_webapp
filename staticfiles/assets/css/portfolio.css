@@ -1,0 +1,62 @@
+/* Portfolio Section Styles */
+.portfolio-section {
+  background-color: #f8f9fa;
+}
+
+.portfolio-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+}
+
+.portfolio-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-img {
+  object-fit: cover;
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-img {
+  opacity: 0.8;
+}
+
+.portfolio-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 0.7;
+}
+
+.portfolio-content {
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+}
+
+.portfolio-content h5 {
+  color: #333;
+}
+
+.portfolio-content .text-muted {
+  font-size: 0.9rem;
+}
+
+/* Custom Typography */
+h2.text-center {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.text-primary {
+  color: #007bff; /* Change this to your primary color */
+}
+
+.text-muted {
+  color: #6c757d;
+}

@@ -42,7 +42,7 @@ def portifolio(request):
   return render(request, "pages/portifolio.html", context)
 
 
-def products(request): 
+def products(request):
     # Default sorting by most recently uploaded
     sort = request.GET.get('sort', '-created_at')  # Get sort parameter or use default
     products = Product.objects.filter(product_status="published").order_by(sort)
@@ -53,10 +53,14 @@ def products(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+    # Check if there are any published products
+    no_products = not products.exists()
+
     context = {
         'page_obj': page_obj,
         'category': category,
-        'sort': sort  # Pass the sort parameter to the template
+        'sort': sort,  # Pass the sort parameter to the template
+        'no_products': no_products,  # Add a flag for no products
     }
 
     return render(request, "pages/product/products.html", context)

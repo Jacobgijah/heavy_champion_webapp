@@ -32,8 +32,8 @@ Category
       
         <div class="col-lg-4 col-md-6 mb-5 mb-md-0 text-center text-md-start h-auto">
           <div class="d-flex justify-content-between flex-column h-100">
-            <a href="#">
-              <img class="w-md-100 w-75 rounded-2" src="{{product.image.url}}" alt="" />
+            <a href="{% url 'website:product_detail' product.pid %}">
+              <img class="w-md-100 w-75 rounded-2" src="{{ product.image.url }}" alt="{{ product.title }}" />
             </a>
             <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-3">
               <a href="#">

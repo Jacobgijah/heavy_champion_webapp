@@ -1,4 +1,6 @@
-from django.db.models import Count
+from django import forms
+from django.core.validators import RegexValidator
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from website.models import *
@@ -23,13 +25,70 @@ def about(request):
   return render(request, "pages/about.html", context)
 
 
+# Define the ContactForm class
+class ContactForm(forms.Form):
+    name = forms.CharField(
+        max_length=100, 
+        widget=forms.TextInput(attrs={'class': 'form-control form-control-sm', 'placeholder': 'Enter your name'}),
+        label="Name",
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'class': 'form-control form-control-sm', 'placeholder': 'Enter your email'}),
+        label="Email",
+    )
+    phone = forms.CharField(
+        max_length=10,
+        validators=[
+            RegexValidator(r'^0[67]\d{8}$', message="Phone number must start with 06 or 07 and be 10 digits.")
+        ],
+        widget=forms.TextInput(attrs={'class': 'form-control form-control-sm', 'placeholder': 'Enter your phone number'}),
+        label="Phone",
+    )
+    message = forms.CharField(
+        max_length=255,
+        widget=forms.Textarea(attrs={'class': 'form-control form-control-sm', 'placeholder': 'Enter your message', 'rows': 3}),
+        label="Message",
+    )
+
+
+
+# Contact view
 def contact(request):
-  
-  context = {
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process the valid form data
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            message = form.cleaned_data['message']
 
-  }
+            try:
+                # Attempt to send an email (replace with actual email backend)
+                send_mail(
+                    subject=f"Contact Form Submission by {name}",
+                    message=f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}",
+                    from_email=email,
+                    recipient_list=['director@theheavychampion.co.tz'],  # Your email
+                )
+                response_message = "Your message has been sent successfully!"
+                response_status = "success"
+            except Exception as e:
+                response_message = "Failed to send your message. Please try again later."
+                response_status = "error"
+        else:
+            response_message = "Please correct the errors in the form."
+            response_status = "error"
+    else:
+        form = ContactForm()
+        response_message = None
+        response_status = None
 
-  return render(request, "pages/contact.html", context)
+    return render(request, "pages/contact.html", {
+        'form': form,
+        'response_message': response_message,
+        'response_status': response_status,
+    })
 
 
 def portifolio(request):

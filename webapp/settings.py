@@ -122,8 +122,8 @@ LOGGING = {
     },
 }
 
-INSTALLED_APPS += ['crispy_forms']
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
+# INSTALLED_APPS += ['crispy_forms']
+# CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # Email settings from environment variables
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
@@ -137,3 +137,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'your-email-password')
 EMAIL_DEBUG = os.getenv('EMAIL_DEBUG', 'False') == 'True'
 
 
+# Secure cookie settings for production
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True  # Redirect HTTP to HTTPS

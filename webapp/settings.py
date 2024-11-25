@@ -120,8 +120,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JAZZMIN_SETTINGS = {
   'site_header': "THC+",
   'site_brand': "THC +",
-  'copyright': "heavychamp.co.tz",
+  'copyright': "FreshInk Digital",
 }
+
+LOGIN_REDIRECT_URL = '/hifadhi/'
 
 LOGGING = {
     'version': 1,

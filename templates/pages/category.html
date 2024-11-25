@@ -3,64 +3,70 @@
 {% load static %}
 
 {% block title %}
-Category
+Category - {{ category.title }}
 {% endblock title %}
 
 {% block main %}
-
 <!-- ============================================-->
 <!-- <section> begin ============================-->
 <section class="mt-6">
-
   <div class="container">
+    <!-- Category Header -->
     <p class="text-center fs-1">Category</p>
-    <h2 class="mx-auto text-center fs-lg-6 fs-md-5 w-lg-75">{{category.title}}</h2>
-    <a href="{% url 'website:products' %}">
-      <h1 class="badge bg-success fw-bold text-dark ms-2 py-1 px-2">All</h1>
-    <a/>
-    <h5>
-        <p>
-          We Found<span class="badge bg-success fw-bold text-dark ms-2 py-1 px-2">
-            {{products.count}} 
-          </span> Item{{products.count|pluralize}} for You!
-        </p>
-
+    <h2 class="mx-auto text-center fs-lg-6 fs-md-5 w-lg-75">{{ category.title }}</h2>
+    
+    <!-- Link Back to All Products -->
+    <div class="text-center my-4">
+      <a href="{% url 'website:products' %}">
+        <span class="badge bg-success fw-bold text-dark py-1 px-2">View All Products</span>
+      </a>
+    </div>
+    
+    <!-- Products Count -->
+    <h5 class="text-center mb-4">
+      We Found 
+      <span class="badge bg-success fw-bold text-dark py-1 px-2">
+        {{ products.count }}
+      </span> 
+      Item{{ products.count|pluralize }} for You!
     </h5>
-    <div class="row mt-5 gx-xl-7">
-      
-      {% for product in  products %}
-      
-        <div class="col-lg-4 col-md-6 mb-5 mb-md-0 text-center text-md-start h-auto">
-          <div class="d-flex justify-content-between flex-column h-100">
-            <a href="{% url 'website:product_detail' product.pid %}">
-              <img class="w-md-100 w-75 rounded-2" src="{{ product.image.url }}" alt="{{ product.title }}" />
-            </a>
-            <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-3">
-              <a href="#">
-                <p class="fw-bold mb-0 text-black">Category</p>
-              </a>
-              <p class="mb-0">{{product.collection}}</p>
-            </div>
-            <a href="#">
-              <h5 class="mt-1 mb-3 fs-0 fs-md-1">{{product.description}}</h5>
-            </a>
-            <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3 mb-md-5">
-              <p class="mb-0 text-gray">{{product.title}}</p>
-            </div>
+    
+    <!-- Products Grid -->
+    <div class="row mt-4 gx-xl-5">
+      {% for product in products %}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          <a href="{% url 'website:product_detail' product.pid %}">
+            <img
+              class="card-img-top w-100 rounded-2"
+              src="{{ product.image.url }}"
+              alt="{{ product.title }}"
+            />
+          </a>
+          <div class="card-body py-3 px-2 text-center">
+            
+            <!-- Product Category -->
+            <p class="fw-bold text-primary mb-1" style="font-size: 0.9rem;">{{ product.collection.title }}</p>
+            
+            <!-- Product Title -->
+            <h6 class="text-dark mb-2" style="font-size: 1rem; font-weight: 600;">{{ product.title }}</h6>
+            
+            <!-- View Details Button -->
+            <a href="{% url 'website:product_detail' product.pid %}" class="btn btn-outline-primary btn-sm">View Details</a>
           </div>
         </div>
-
+      </div>
       {% endfor %}
-     
     </div>
+    
+    <!-- Load More Button -->
+    {% if products.has_next %}
     <div class="text-center mb-4">
-      <button class="btn btn-outline-dark">Load More</button>
+      <a href="?page={{ products.next_page_number }}" class="btn btn-outline-dark">Load More</a>
     </div>
+    {% endif %}
   </div>
-  <!-- end of .container-->
-
 </section>
 <!-- <section> close ============================-->
 <!-- ============================================-->
-
 {% endblock main %}

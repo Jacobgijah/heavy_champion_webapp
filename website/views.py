@@ -100,9 +100,12 @@ def contact(request):
 
 def portifolio(request):
   query_set = Portifolio.objects.all().order_by("-date")
+  has_portfolio = query_set.exists()
+
   
   context = {
     'query_set': query_set,
+    'has_portfolio': has_portfolio,
   }
 
   return render(request, "pages/portifolio.html", context)

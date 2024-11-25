@@ -8,40 +8,42 @@ Portifolio
 
 {% block main %}
 <!-- ============================================-->
-<!-- <Services section> begin ============================-->
+<!-- <Services section> begin ============================-->{% comment %}  {% endcomment %}
 <section>
 
   <div class="container mt-6">
     <p class="text-center fs-1">Gallery</p>
     <h2 class="mx-auto text-center fs-lg-6 fs-md-5 w-lg-75">What We Do</h2>
-    <div class="row gx-xl-7 mt-5">
-
-     {% for portifolio in query_set %}
-      
-      <div class="col-lg-4 col-md-6 mb-5 mb-md-0 text-center text-md-start h-auto">
-        <div class="d-flex justify-content-between flex-column h-100"><a href="#"><img class="w-md-100 w-75 rounded-2" src="{{portifolio.image.url}}" alt="" /></a>
-          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-3"><a href="#">
-              <p class="fw-bold mb-0 text-black">Date</p>
-            </a>
-            <p class="mb-0">{{portifolio.date}}</p>
-          </div><a href="#">
-            <h5 class="mt-1 mb-3 fs-0 fs-md-1">{{portifolio.description}}</h5>
-          </a>
-          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3 mb-md-5">
-            <p class="mb-0 text-gray">{{portifolio.title}}</p>
+    
+    {% if has_portfolio %}
+      <div class="row gx-xl-7 mt-5">
+        {% for portifolio in query_set %}
+          <div class="col-lg-4 col-md-6 mb-5 mb-md-0 text-center text-md-start h-auto">
+            <div class="d-flex justify-content-between flex-column h-100"><a href="#"><img class="w-md-100 w-75 rounded-2" src="{{portifolio.image.url}}" alt="" /></a>
+              <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-3"><a href="#">
+                  <p class="fw-bold mb-0 text-black">Date</p>
+                </a>
+                <p class="mb-0">{{portifolio.date}}</p>
+              </div><a href="#">
+                <h5 class="mt-1 mb-3 fs-0 fs-md-1">{{portifolio.description}}</h5>
+              </a>
+              <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3 mb-md-5">
+                <p class="mb-0 text-gray">{{portifolio.title}}</p>
+              </div>
+            </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
-
-     {% endfor %}
-      
-    </div>
+    {% else %}
+      <div class="text-center mt-5">
+        <p>No portfolios available at the moment. Please check back later.</p>
+      </div>
+    {% endif %}
   </div>
   <!-- end of .container-->
   
 </section>
 <!-- <Services section> close ============================-->
 <!-- ============================================-->
-  
 
 {% endblock main %}

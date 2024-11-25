@@ -14,7 +14,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class CollectionAdmin(admin.ModelAdmin):
-  list_display = ['title']
+  list_display = ['title', 'featured_product']
+  list_editable = ['title']
+  list_display_links = ['featured_product']
 
 
 class VendorAdmin(admin.ModelAdmin):

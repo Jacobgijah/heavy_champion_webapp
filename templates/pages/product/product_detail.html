@@ -7,55 +7,69 @@
 {% block main %}
 <section class="mt-6">
   <div class="container">
-  <p class="text-center fs-1">Product Details</p>
-    <div class="row">
-      <!-- Product Images -->
+    <!-- Navigation Back Link -->
+    <div class="mb-3">
+      <a href="{% url 'website:category' product.collection.cid %}" class="btn btn-outline-primary btn-sm">
+        ← Back to {{ product.collection.title }}
+      </a>
+    </div>
+
+    <!-- Page Header -->
+    <p class="text-center fs-3 mb-4">Product Details</p>
+    
+    <!-- Product Main Details -->
+    <div class="row align-items-center">
+      <!-- Product Image Section -->
       <div class="col-md-6 text-center">
         <img
-          class="rounded-3 w-50 mb-4"
+          class="rounded-3 shadow-sm w-75 mb-3"
           src="{{ product.image.url }}"
           alt="{{ product.title }}"
         />
-        <div class="d-flex justify-content-center gap-2">
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
           {% for image in product_images %}
           <img
-            class="rounded-2 border"
+            class="rounded-2 border shadow-sm"
             src="{{ image.images.url }}"
             alt="{{ product.title }}"
-            width="100"
+            width="70"
+            style="cursor: pointer;"
           />
           {% endfor %}
         </div>
       </div>
 
-      <!-- Product Details -->
+      <!-- Product Information Section -->
       <div class="col-md-6">
-        <h2 class="mb-2">{{ product.title }}</h2>
-        <p class="fs-4 text-muted mb-2">
-          Price:
-          <span class="text-danger fw-bold">Tshs {{ product.price }}</span>
-          {% if product.old_price %}
-          <span class="text-decoration-line-through text-muted fs-1"
-            >Tshs {{ product.old_price }}</span
-          >
-          {% endif %}
-        </p>
-        <p class="mb-2">{{ product.description }}</p>
-        <ul class="list-unstyled">
-          <li><strong>Specifications:</strong> {{ product.specifications }}</li>
-          <li>
-            <strong>Stock:</strong>
-            {% if product.in_stock %} 
-              In Stock 
-            {% else %} 
-              Out of Stock 
-            {% endif %}
+        <h4 class="text-primary mb-3">{{ product.title }}</h4>
+        <p class="text-muted small mb-4">{{ product.short_description }}</p>
+        <ul class="list-group small mb-3">
+          <li class="list-group-item">
+            <strong>Specifications:</strong>
+            <ul class="ps-3">
+              {% for spec in product.specifications.splitlines %}
+              <li>{{ spec }}</li>
+              {% endfor %}
+            </ul>
           </li>
-          <li><strong>SKU:</strong> {{ product.sku }}</li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span><strong>Availability:</strong></span>
+            <span>
+              {% if product.in_stock %}
+                <span class="text-success">In Stock</span>
+              {% else %}
+                <span class="text-danger">Out of Stock</span>
+              {% endif %}
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span><strong>SKU:</strong></span>
+            <span>{{ product.sku }}</span>
+          </li>
         </ul>
         <a 
-          href="https://wa.me/{{ whatsapp_number }}?text=Hello The Heavy Champion Ltd!%20I%20am%20interested%20in%20buying%20the%20product%20{{ product.title }}.%20Price:%20Tshs {{ product.price }}%20SKU:%20{{ product.sku }}"
-          class="btn btn-dark mt-2"
+          href="https://wa.me/{{ whatsapp_number }}?text=Hello The Heavy Champion Ltd!%20I%20am%20interested%20in%20buying%20the%20product%20{{ product.title }}.%20SKU:%20{{ product.sku }}"
+          class="btn btn-outline-primary btn-sm"
           target="_blank"
         >
           Buy Now
@@ -63,22 +77,37 @@
       </div>
     </div>
 
-    <!-- Related Images Section -->
-    <div class="row mt-5">
-      <h4 class="text-center mb-4">Related Images</h4>
-      {% if product_images %}
-        {% for image in product_images %}
-        <div class="col-md-3 mb-3">
-          <img
-            class="rounded-3 w-100 shadow-sm"
-            src="{{ image.images.url }}"
-            alt="{{ product.title }}"
-          />
-        </div>
-        {% endfor %}
-      {% else %}
-      <p class="text-center text-muted">No additional images available for this product.</p>
-      {% endif %}
+    <!-- Related Products Section -->
+    <div class="mt-5">
+      <h5 class="text-center mb-4">Related Products</h5>
+      <div class="row">
+        {% if related_products %}
+          {% for related_product in related_products %}
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <div class="card h-100 shadow-sm">
+              <a href="{% url 'website:product_detail' related_product.pid %}">
+                <img
+                  class="card-img-top rounded-3"
+                  src="{{ related_product.image.url }}"
+                  alt="{{ related_product.title }}"
+                />
+              </a>
+              <div class="card-body text-center">
+                <h6 class="card-title mb-2 small text-dark">{{ related_product.title }}</h6>
+                <a 
+                  href="{% url 'website:product_detail' related_product.pid %}" 
+                  class="btn btn-outline-primary btn-sm"
+                >
+                  View Details
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+        <p class="text-center text-muted">No related products available at this time.</p>
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>

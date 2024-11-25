@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
-import dj_database_url
+from dotenv import load_dotenv
+
+# load env variables
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -57,10 +60,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'webapp.wsgi.application'
 
-# Database setup (For production use dj_database_url)
+# DATABASES
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3')  # Use environment variables for DB config
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('NAME', 'heavychamp_db'),
+        'HOST': os.getenv('HOST', 'localhost'),
+        'USER': os.getenv('USER', 'root'),
+        'PASSWORD': os.getenv('PASSWORD', 'root'),
+        'PORT': os.getenv('PORT', '3306')
+    }
 }
+
+# debug mode
+print("DB Name:", os.getenv('NAME'))
+print("DB Host:", os.getenv('HOST'))
+print("DB User:", os.getenv('USER'))
+print("DB Password:", os.getenv('PASSWORD'))
+print("DB Port:", os.getenv('PORT'))
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
